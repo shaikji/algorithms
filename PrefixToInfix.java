@@ -4,7 +4,7 @@ import java.util.Stack;
 
 class PrefixToInfix {
 
-	static String prefixToPostfix(String prefix) {
+	static String prefixToInfix(String prefix) {
 
 		if (prefix == null || prefix.length() == 0)
 			return prefix;
@@ -27,8 +27,8 @@ class PrefixToInfix {
 
 	public static void main(String[] args) {
 		String prefix = "*+AB-CD";
-		System.out.println(prefixToPostfix(prefix));
+		System.out.println(prefixToInfix(prefix));
 		prefix = "*-A/BC-/AKL";
-		System.out.println(prefixToPostfix(prefix));
+		System.out.println(prefixToInfix(prefix));
 	}
 }
