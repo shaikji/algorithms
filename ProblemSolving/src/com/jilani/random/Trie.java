@@ -94,6 +94,8 @@ class Trie{
             current = temp;
         }
         
+        // TODO: Fix it
+        return null;
         
         
         
