@@ -94,7 +94,6 @@ class Trie{
             current = temp;
         }
         
-        if ( current)
         
         
         
