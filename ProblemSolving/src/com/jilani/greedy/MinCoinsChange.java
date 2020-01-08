@@ -1,36 +1,32 @@
 package com.jilani.greedy;
-class MinCoinsChange{
 
-    public static void main(String[] args) {
-        int Value = 93;
-        int[] deno = {1, 2, 5, 10, 20, 50, 100, 500, 1000};
-        System.out.println("Min number of coins = " + findMin(deno, Value));
-    }
+class MinCoinsChange {
 
-    static int findMin(int[] deno, int V){
+	public static void main(String[] args) {
+		int Value = 93;
+		int[] deno = { 1, 2, 5, 10, 20, 50, 100, 500, 1000 };
+		System.out.println("Min number of coins = " + findMin(deno, Value));
+	}
 
-        if ( deno == null || V <= 0){
-            return -1;
-        }
+	static int findMin(int[] deno, int V) {
 
-        int n = deno.length;
-        int minCoins = 0;
+		if (deno == null || V <= 0) {
+			return -1;
+		}
 
-        for (int i = n-1; i >= 0;){
-            if ( deno[i] == V){
-            		System.out.println(deno[i]);
-                minCoins++;
-                break;
-            } else if ( deno[i] > V){
-                i--;
-            } else {
-        		System.out.println(deno[i]);
-                minCoins++;
-                V = V - deno[i];
-            }
-        }
-        
-        return minCoins;
+		int n = deno.length;
+		int minCoins = 0;
 
-    }
+		for (int i = n - 1; i >= 0; i--) {
+			while (V >= deno[i]) {
+				System.out.println(deno[i]);
+				minCoins++;
+				V = V-deno[i];
+			}
+
+		}
+
+		return minCoins;
+
+	}
 }
