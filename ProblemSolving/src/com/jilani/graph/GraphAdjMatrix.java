@@ -1,4 +1,8 @@
 package com.jilani.graph;
+
+import java.util.LinkedList;
+import java.util.Queue;
+
 class GraphAdjMatrix{
 
     public static void main(String[] args) {
@@ -12,7 +16,11 @@ class GraphAdjMatrix{
     	
         int V = graph.length;
 
+        System.out.println (" dfs ");
         dfs(graph, V);
+
+        System.out.println (" bfs ");
+        bfs(graph, V);
     }
 
     static void dfs(int[][] graph, int V) {
@@ -36,4 +44,31 @@ class GraphAdjMatrix{
                 dfsUtil(graph, V, visited, v);
         }
     }
+
+   static  void bfs(int[][] graph, int V){
+
+
+        Queue<Integer> queue = new LinkedList();
+        boolean[] visited = new boolean[V];
+
+        queue.add(0);
+
+        while ( queue.size() > 0 ) {
+
+            Integer u = queue.poll();
+            if (!visited[u]){
+                System.out.println(u);
+                visited[u] = true;
+
+                for ( int v=0; v < V; v++){
+                    if ( graph[u][v] == 1 && !visited[v] ){
+                        queue.add(v);
+                    }
+                }
+        
+            }
+        }
+    }
+    
+    
 }
