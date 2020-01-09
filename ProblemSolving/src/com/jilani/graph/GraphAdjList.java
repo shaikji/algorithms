@@ -1,24 +1,26 @@
 package com.jilani.graph;
 
 import java.util.LinkedList;
+import java.util.Queue;
 
 class GraphAdjList{
 
     public static void main(String[] args) {
     	
-    		Graph g = new Graph(4); 
+    		Graph g = new Graph(5); 
     	  
         g.addEdge(0, 1); 
-        g.addEdge(0, 2); 
         g.addEdge(1, 2); 
-        g.addEdge(2, 0); 
         g.addEdge(2, 3); 
-        g.addEdge(3, 3); 
+        g.addEdge(0, 4);
+        
   
-        System.out.println("Following is Depth First Traversal "+ 
-                           "(starting from vertex 2)"); 
+        System.out.println("dfs"); 
   
         g.dfs(); 
+        
+        System.out.println(" bfs ");
+        g.bfs(); 
     		
 
         
@@ -69,6 +71,32 @@ class GraphAdjList{
                     dfsUtil(visited, v);
                 }
             }
+        }
+        
+        void bfs() {
+        	
+        		boolean[] visited = new boolean[V];
+        		Queue<Integer> queue = new LinkedList();
+        		queue.add(0);
+        		
+        		while ( !queue.isEmpty()) {
+        			int u = queue.poll();
+        				
+        			if ( !visited[u]) {
+        				visited[u] = true;
+        				System.out.println(u);
+        				
+        				LinkedList<Integer> list = adjListArr[u];
+        				
+        				for ( int i=0; i < list.size(); i++) {
+        					int v = list.get(i);
+        					if ( !visited[v])
+        						queue.add(v);
+        				}
+        			}
+        			
+        		}
+        		
         }
     }
 }
