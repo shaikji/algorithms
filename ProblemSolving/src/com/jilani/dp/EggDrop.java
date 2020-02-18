@@ -40,7 +40,7 @@ class EggDrop{
     
     static int eggDrop( int n, int k) {
     	
-    	System.out.println("DP: eggDrop("+ n+","+k+")");
+    	System.out.println("DP: eggDrop("+ n +"," + k +" ) ");
 
     	
     	int[][] dp = new int[n+1][k+1];
