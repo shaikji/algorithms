@@ -4,8 +4,6 @@ package com.jilani.linkedlist;
 public class LinkedList {
 	
 	Node head = null;
-
- 
 	
 	void insert(int data) {
 		
@@ -58,6 +56,36 @@ public class LinkedList {
 		}
 		
 		System.out.println(" Middle of the list = " + slow.data);
+	}
+	
+	
+	void reverseInGroupsOfK( int k) {
+		
+		head = reverseInGroupsOfK(head, k);
+		
+	}
+
+
+	private Node reverseInGroupsOfK(Node head, int k) {
+		
+		Node prev = null;
+		Node next = null;
+		Node curr = head;
+		
+		int count = 0;
+		
+		while ( count < k && curr != null ) {
+			next = curr.next;
+			curr.next = prev;
+			prev = curr;
+			curr = next;
+			count++;
+		}
+		
+		if ( next != null)
+			head.next = reverseInGroupsOfK(next, k);
+		
+		return prev;
 	}
  
 }

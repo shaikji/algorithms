@@ -6,41 +6,17 @@ public class App {
 		
 		LinkedList list = new LinkedList();
 		
-		list.printList();	
-		list.printMiddle();
+		for ( int i=1; i <= 10; i++) {
+			list.insert(i);
+		}
 		
+		System.out.println(" Original List");
+		list.printList();
+		int k=1;
 		
-		list.insert(1);
-		
-		list.printList();	
-		list.printMiddle();
-		
-		
-		list.insert(2);
-		
-		list.printList();	
-		list.printMiddle();
-		
-		
-		list.insert(3);
-		
-		list.printList();	
-		list.printMiddle();
-		
-		
-		
-		list.insert(4);
-		
-		list.printList();	
-		list.printMiddle();
-		
-		
-		list.insert(5);
-
-		list.printList();	
-		list.printMiddle();
-		
-		
+		list.reverseInGroupsOfK(k);
+		System.out.println(" after reverse in groups of " + k);
+		list.printList();
 
 	}
 
