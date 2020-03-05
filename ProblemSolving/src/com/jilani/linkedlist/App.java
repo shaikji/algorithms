@@ -12,12 +12,18 @@ public class App {
 		
 		System.out.println(" Original List");
 		list.printList();
-		int k=1;
-		
-		list.reverseInGroupsOfK(k);
-		System.out.println(" after reverse in groups of " + k);
-		list.printList();
+		/*
+		 * int k=1;
+		 * 
+		 * list.reverseInGroupsOfK(k); System.out.println(" after reverse in groups of "
+		 * + k); list.printList();
+		 */
 
+		for ( int i=12; i >=0; i--) {
+			System.out.println( i +"th from last = " + list.findNthFromLast(i) );
+			System.out.println( i +"th from lastV2 = " + list.findNthFromLastV2(i) );
+			System.out.println();
+		}
 	}
 
 }

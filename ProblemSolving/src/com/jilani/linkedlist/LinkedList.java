@@ -87,5 +87,55 @@ public class LinkedList {
 		
 		return prev;
 	}
+	
+	public int findNthFromLast(int n) {
+		
+		Node first = null;
+		Node last = head;
+		
+		while ( last != null) {
+			
+			if ( n == 0 ) {
+				first = head;
+			}
+			
+			n--;
+			if ( first != null )
+				first = first.next;
+			last = last.next;
+
+		}
+		
+		if ( n == 0 )
+			first = head;
+
+		return first == null ? -1: first.data;
+	}
+	
+	public int findNthFromLastV2(int n ) {
+		
+		if ( head == null || n <= 0)
+			return -1;
+		
+		int count = 0;
+		Node p = head;
+		Node q = head;
+		
+		while ( count < n) {
+			
+			if ( q == null ) {
+				return -1;
+			}
+			count++;
+			q = q.next;
+		}
+		
+		while ( q != null ) {
+			p = p.next;
+			q = q.next;
+		}
+		
+		return p.data;
+	}
  
 }
