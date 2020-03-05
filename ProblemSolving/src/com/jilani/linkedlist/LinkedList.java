@@ -1,5 +1,7 @@
 package com.jilani.linkedlist;
 
+import java.util.HashSet;
+import java.util.Set;
 
 public class LinkedList {
 	
@@ -136,6 +138,30 @@ public class LinkedList {
 		}
 		
 		return p.data;
+	}
+
+
+	public void removeDuplicates() {
+		
+		if ( head == null)
+			return;
+		
+		Set<Integer> set = new HashSet<Integer>();
+		
+		Node curr = head;
+		Node prev = null;
+		
+		while ( curr != null) {
+			
+			if (set.contains(curr.data)) {
+				prev.next = curr.next;
+				curr = curr.next;
+			} else {
+				set.add(curr.data);
+				prev = curr;
+				curr = curr.next;
+			}
+		}
 	}
  
 }
