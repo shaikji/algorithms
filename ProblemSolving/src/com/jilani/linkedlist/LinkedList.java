@@ -42,6 +42,24 @@ public class LinkedList {
 		System.out.println(curr.data);
 	}
 	
+	void makeALoop () {
+		
+		if ( head == null) {
+			System.out.println(" List is empty");
+			return;
+		}
+		
+		Node curr = head;
+		
+		while ( curr.next != null) {
+			//System.out.print( curr.data + " -> ");
+			curr = curr.next;
+		}
+		
+		curr.next = head.next;
+		//System.out.println(curr.data);
+	}
+	
 	void printMiddle() {
 		
 		if ( head == null) {
@@ -162,6 +180,28 @@ public class LinkedList {
 				curr = curr.next;
 			}
 		}
+	}
+	
+	public boolean loopExists() {
+		
+		if ( head == null) {
+			return false;
+		}
+		
+		Node slow = head;
+		Node fast = head;
+		
+		do {
+			
+			slow = slow.next;
+			if ( fast == null || fast.next == null) {
+				return false;
+			}
+			fast = fast.next.next;
+			
+		} while ( slow != fast);
+		
+		return true;
 	}
  
 }
