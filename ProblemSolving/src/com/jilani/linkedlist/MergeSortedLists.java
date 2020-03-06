@@ -17,7 +17,8 @@ public class MergeSortedLists {
 		
 		list1.printList();
 		list2.printList();
-		Node merged = mergeLists(list1.head, list2.head);
+		//Node merged = mergeLists(list1.head, list2.head);
+		Node merged = sortedMerge(list1.head, list2.head);
 		printList(merged);
 	}
 
@@ -70,5 +71,21 @@ public class MergeSortedLists {
 			tail.next = head1;
 		
 		return dummy.next;
+	}
+	
+	static Node sortedMerge(Node p, Node q) {
+		
+		if ( p == null)
+			return q;
+		if ( q == null)
+			return p;
+		
+		if ( p.data <= q.data) {
+			p.next = sortedMerge(p.next,q);
+			return p;
+		} else {
+			q.next = sortedMerge(p, q.next);
+			return q;
+		}
 	}
 }
