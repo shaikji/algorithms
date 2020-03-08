@@ -9,7 +9,45 @@ class AddOneToLinkedListNumber {
         head.next.next = new Node(9);
         head.next.next.next = new Node(9);
 
-        printList(head, " Original List");
+        //iterativeSolution();
+        head = addOneRecursive(head);
+        
+        printList(head, "After adding 1 to number recursively");
+        
+    }
+    
+    static Node addOneRecursive(Node head) {
+    	
+    	if ( head == null) {
+    		return head;
+    	}
+    	
+    	int carry = addOne(head);
+    	Node temp= null;
+    	if ( carry > 0 ) {
+    		temp = new Node(carry);
+    		temp.next = head;
+    		head = temp;
+    	}
+    	return head;
+    }
+    
+    static int addOne(Node head) {
+    	
+    	if (head.next == null) {
+    		int sum = 1+ head.data;
+    		head.data = sum%10;
+    		return sum /10;
+    	}
+    	
+    	int carry = addOne(head.next);
+    	int sum = carry + head.data;
+    	head.data = sum%10;
+    	return sum/10;
+    }
+    
+    private static void iterativeSolution() {
+    	printList(head, " Original List");
         head = reverse(head);
         printList(head, " After reversing the list ");
         addOneToList(head);
