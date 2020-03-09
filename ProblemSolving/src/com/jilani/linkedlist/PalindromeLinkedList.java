@@ -9,21 +9,50 @@ public class PalindromeLinkedList {
 		add(1);
 		add(2);
 		add(3);
-		//add(4);
+		add(4);
 		add(3);
 		add(2);
 		add(1);
-		//add(5);
+		add(5);
 
 		printList(head,"Original List");
 		System.out.println(" isPalindrom = " + isPalindrome(head));
 		System.out.println();
 		printList(head,"After checking palindrome List");
 		
+		System.out.println();
 		System.out.println(" isPalindrom = " + isPalindromeUsingStack(head));
 		System.out.println();
+		
+		System.out.println();
+		System.out.println(" isPalindrom = " + isPalindromeUsingRecursion(head));
+		System.out.println();
+		
 
 	}
+	
+	
+
+	private static boolean isPalindromeUsingRecursion(Node right) {
+		
+		left = head;
+		
+		if ( right == null)
+			return true;
+		
+		boolean isp = isPalindromeUsingRecursion(right.next);
+		
+		if ( isp == false)
+			return false;
+		
+		boolean isp2 = (left.data == right.data);
+		
+		left = left.next;
+		
+		return isp2;
+	}
+
+
 
 	private static boolean isPalindromeUsingStack(Node head) {
 		
@@ -136,6 +165,7 @@ public class PalindromeLinkedList {
 	}
 
 	static Node head;
+	static Node left;
 
 	static void add(int data) {
 
