@@ -14,10 +14,44 @@ public class DeleteOccuranceOfElement {
 		add(9);
 	
 		add(1);
+		add(3);
 		printList(head, "Original List");
 		head = deleteLastOccuranceOf(head, 5);
 		printList(head, "List after deleting");
 
+		head = deleteFirstOccuranceOf(head, 3);
+		printList(head, "List after deleting first Occurance");
+		
+	}
+	
+	static Node deleteFirstOccuranceOf(Node head, int k) {
+		
+		if ( head == null)
+			return head;
+		
+		Node curr = head;
+		Node prev = null;
+		
+		while (curr != null) {
+			
+			if ( curr.data == k ) {
+				break;
+			}
+			
+			prev = curr;
+			curr = curr.next;
+		}
+		
+		if ( curr == null) {
+			System.out.println(" Element not found");
+			return head;
+		}
+		if ( prev == null) {
+			head = head.next;
+		} else {
+			prev.next = curr.next;
+		}
+		return head;
 	}
 	
 	static Node deleteLastOccuranceOf(Node head, int k) {
