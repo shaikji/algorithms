@@ -1,5 +1,7 @@
 package com.jilani.linkedlist;
 
+import java.util.Stack;
+
 public class PalindromeLinkedList {
 
 	public static void main(String[] args) {
@@ -7,17 +9,55 @@ public class PalindromeLinkedList {
 		add(1);
 		add(2);
 		add(3);
-		add(4);
+		//add(4);
 		add(3);
 		add(2);
 		add(1);
-		add(5);
+		//add(5);
 
 		printList(head,"Original List");
 		System.out.println(" isPalindrom = " + isPalindrome(head));
 		System.out.println();
 		printList(head,"After checking palindrome List");
+		
+		System.out.println(" isPalindrom = " + isPalindromeUsingStack(head));
+		System.out.println();
 
+	}
+
+	private static boolean isPalindromeUsingStack(Node head) {
+		
+		// Find middle logic 
+		
+		if ( null == head || null == head.next) {
+			return true;
+		}
+		
+		Node slow = head;
+		Node fast = head;
+		Node prev = head;
+		
+		Stack<Integer> stack = new Stack<Integer>();
+		
+		while ( fast != null && fast.next != null) {
+			stack.push(slow.data);
+			prev = slow;
+			slow = slow.next;
+			fast = fast.next.next;
+		}
+		
+		Node mid  = ( fast == null) ? prev: slow;
+		
+		mid = mid.next;
+		
+		while ( mid != null) {
+			if ( mid.data != stack.pop()) {
+				return false;
+			}
+			mid = mid.next;
+		}
+		
+		return true;
 	}
 
 	static boolean isPalindrome(Node head) {
