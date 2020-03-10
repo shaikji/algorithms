@@ -9,7 +9,7 @@ public class SwapNodes {
 
 		printList(head, "Original List");
 		//head = swapNodes(head, 1, 10);
-		head = swapNodesV2(head, 10,2);
+		head = swapNodesV3(head, 10,2);
 		printList(head, "List after swapping");
 
 	}
@@ -66,6 +66,53 @@ public class SwapNodes {
 			
 		if ( currY == null)
 			return head;
+		
+		// Deal with the previous pointers
+		if ( prevX != null) {
+			prevX.next = currY;
+		} else {
+			head = currY;
+		}
+		
+		if ( prevY != null) {
+			prevY.next = currX;
+		} else {
+			head = currX;
+		}
+		
+		// Now swap the next pointers
+		
+		Node temp = currX.next;
+		currX.next = currY.next;
+		currY.next = temp;
+		
+		return head;
+	
+	}
+	
+	static Node swapNodesV3(Node head, int x, int y) {
+		
+		Node currX = head;
+		Node currY = head;
+		Node prevX = null;
+		Node prevY = null;
+		
+
+		Node curr = head;
+		Node prev = null;
+		
+		while ( curr != null) {
+			if ( curr.data == x) {
+				prevX = prev;
+				currX = curr;
+			} else if ( curr.data == y ) {
+				prevY = prev;
+				currY = curr;
+			}
+			
+			prev = curr;
+			curr = curr.next;
+		}
 		
 		// Deal with the previous pointers
 		if ( prevX != null) {
