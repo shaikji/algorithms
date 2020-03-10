@@ -8,7 +8,8 @@ public class SwapNodes {
 			add(i);
 
 		printList(head, "Original List");
-		head = swapNodes(head, 1, 10);
+		//head = swapNodes(head, 1, 10);
+		head = swapNodesV2(head, 10,2);
 		printList(head, "List after swapping");
 
 	}
@@ -39,6 +40,54 @@ public class SwapNodes {
 			return head;
 		}
 
+	}
+	
+	static Node swapNodesV2(Node head, int x, int y) {
+
+		
+		Node currX = head;
+		Node prevX = null;
+		
+		while ( currX != null && currX.data != x) {
+			prevX = currX;
+			currX = currX.next;
+		}
+		
+		if ( currX == null)
+			return head;
+		
+		Node currY = head;
+		Node prevY = null;
+		
+		while ( currY != null && currY.data != y) {
+			prevY = currY;
+			currY = currY.next;
+		}
+			
+		if ( currY == null)
+			return head;
+		
+		// Deal with the previous pointers
+		if ( prevX != null) {
+			prevX.next = currY;
+		} else {
+			head = currY;
+		}
+		
+		if ( prevY != null) {
+			prevY.next = currX;
+		} else {
+			head = currX;
+		}
+		
+		// Now swap the next pointers
+		
+		Node temp = currX.next;
+		currX.next = currY.next;
+		currY.next = temp;
+		
+		return head;
+	
 	}
 
 	static ThreePointers findNode(int data) {
