@@ -12,6 +12,32 @@ public class SearchAnElement {
 			System.out.println(i + " Exists = " + existsNonRec(head, i));
 
 		}
+		
+		Node node = searchRec(head, 5);
+		if ( node == null)
+			System.out.println(" Element not found");
+		else 
+			System.out.println(" Element found");
+		
+		
+		node = searchNonRec(head, 5);
+		if ( node == null)
+			System.out.println(" Element not found");
+		else 
+			System.out.println(" Element found");
+		
+		node = searchRec(head, 15);
+		if ( node == null)
+			System.out.println(" Element not found");
+		else 
+			System.out.println(" Element found");
+		
+		
+		node = searchNonRec(head, 15);
+		if ( node == null)
+			System.out.println(" Element not found");
+		else 
+			System.out.println(" Element found");
 				
 	}
 	
@@ -35,6 +61,29 @@ public class SearchAnElement {
 			curr = curr.next;
 		}
 		return false;
+	}
+	
+	
+	static Node searchRec( Node head, int k) {
+		if( head == null)
+			return head;
+		if ( head.data == k) {
+			return head;
+		}else {
+			return searchRec(head.next, k);
+		}
+	}
+	
+	static Node searchNonRec(Node head, int elem) {
+		if ( head == null)
+			return head;
+		Node curr = head;
+		while ( curr != null) {
+			if ( curr.data == elem)
+				return curr;
+			curr = curr.next;
+		}
+		return null;
 	}
 	
 	static class Node {
