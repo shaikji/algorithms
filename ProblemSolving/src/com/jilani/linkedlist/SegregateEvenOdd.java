@@ -1,7 +1,5 @@
 package com.jilani.linkedlist;
 
-import com.jilani.linkedlist.PairwiseSwap.Node;
-
 public class SegregateEvenOdd {
 
 	public static void main(String[] args) {
@@ -136,6 +134,15 @@ public class SegregateEvenOdd {
 		
 		return newHead;
 
+	}
+	
+	static class Node {
+		int data;
+		Node next;
+
+		Node(int data) {
+			this.data = data;
+		}
 	}
 
 	static Node head;
