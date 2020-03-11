@@ -18,12 +18,64 @@ public class BinaryTreeToDLL {
 		root.right.left.left = new Node(10);
 		root.right.left.right = new Node(11);
 		
+		// Set 4 Implementation
 		//treeToDll(root);
-		start = treeToDllSet1(root);
+		
+		
+		// Set 1 Implementation
+		//start = treeToDllSet1(root);
+		
+		// Set 2 Implementation
+		start = treeToDllSet2(root);
+		
 		printDLL(start, "DLL");
 	}
 	
+	// Set 2 Implemenation
+	// Fix the left pointers first using inorder using prev global variable
+	// Fix the right pointers from the last node
 	
+	static Node treeToDllSet2( Node root) {
+		
+		if ( root == null)
+			return null;
+		
+		prev = null;
+		fixLeftPointers(root);
+		
+		// Go to the end of the right 
+		Node node = root;
+		
+		while ( node.right != null)
+			node = node.right;
+		return fixRightPointers(node);
+	}
+	
+	// just traverse in inorder fashion and fix the prev points and
+	static void fixLeftPointers( Node root) {
+		
+		if ( root == null)
+			return;
+		
+		fixLeftPointers(root.left);
+		root.left = prev;
+		prev = root;
+		fixLeftPointers(root.right);
+	}
+	
+	static Node fixRightPointers(Node node) {
+		
+		if ( node == null)
+			return null;
+		Node prev = null;
+		while ( node.left != null) {
+			node.right = prev;
+			prev = node;
+			node = node.left;
+		}
+		node.right = prev;
+		return node;
+	}
 	// Set 1 
 	// Given a 'node',convert the left sub tree, find the inorder predicessor
 	// Weave the inorder predecessor and node
@@ -109,6 +161,7 @@ public class BinaryTreeToDLL {
 	
 	static Node root;
 	static Node start;
+	static Node prev;
 	
 	static class Node{
 		Node left;
