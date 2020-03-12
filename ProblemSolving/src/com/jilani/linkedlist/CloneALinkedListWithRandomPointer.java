@@ -18,17 +18,12 @@ public class CloneALinkedListWithRandomPointer {
 		
 		printList(head, "Original list");
 		//Node cloned = clone(head);
-		//Node cloned = cloneV2(head);
-		Node cloned = cloneV3(head);
+		Node cloned = cloneV2(head);
 		printList(cloned, "Cloned list");
 
 
 	}
 	
-	
-	static Node clonedV3 (Node head) {
-		
-	}
 	
 	// second version
 	
