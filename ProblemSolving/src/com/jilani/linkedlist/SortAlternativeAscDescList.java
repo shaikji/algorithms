@@ -42,13 +42,35 @@ public class SortAlternativeAscDescList {
 		
 		BList = reverse(BList);
 		
-		mergeLists(AList, BList);
-		
+		//mergeLists(AList, BList);
+		// Recursive
+		mergeListsRec(AList, BList);
 	}
 	
 	
 	// Both lists are sorted.
+
 	
+	static Node mergeListsRec(Node p, Node q) {
+		
+		if ( p == null)
+			return q;
+		if ( q == null)
+			return p;
+		
+		Node temp = null;
+		
+		if ( p.data <= q.data ) {
+			p.next = mergeListsRec(p.next, q);
+			temp = p;
+		}
+		else {
+			q.next = mergeListsRec(p, q.next);
+			temp = q;
+		}
+		
+		return temp;
+	}
 	static Node mergeLists(Node p, Node q) {
 		
 		
@@ -103,23 +125,20 @@ public class SortAlternativeAscDescList {
 	static void splitLists( Node head, Node aNode, Node bNode) {
 		Node curr = head;
 		
-		while ( curr != null && curr.next != null) {
-			
+		while ( curr != null) {
 			aNode.next = curr;
-			bNode.next = curr.next;
 			aNode = aNode.next;
-			bNode = bNode.next;
-			curr = curr.next.next;
+			curr = curr.next;
+			
+			if ( curr != null) {
+				bNode.next = curr;
+				bNode = bNode.next;
+				curr = curr.next;
+			}
 		}
 		
-		if ( curr != null) {
-			aNode.next = curr;
-			bNode.next = null;
-			curr.next = null;
-		} else {
-			aNode.next = null;
-			bNode.next = null;
-		}
+		aNode.next = null;
+		bNode.next = null;
 	}
 	
 	// A better version is coded above
