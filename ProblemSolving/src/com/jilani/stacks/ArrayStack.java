@@ -1,13 +1,13 @@
 package com.jilani.stacks;
 
 // Implement stack using Array
-public class Stack {
+public class ArrayStack {
 	
 	int top = -1;
 	int size = 0;
 	int[] arr = null;
 	
-	Stack(int size){
+	ArrayStack(int size){
 		this.size  = size;
 		arr = new int[size];
 	}
@@ -59,7 +59,7 @@ public class Stack {
 
 	public static void main(String[] args) {
 
-		Stack stack = new Stack(10);
+		ArrayStack stack = new ArrayStack(10);
 		for ( int i=1; i <= 11; i++) {
 			stack.push(i);
 			System.out.println(" After push : size = " + stack.size());
