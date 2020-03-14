@@ -1,0 +1,59 @@
+
+
+IF all squares are visited
+    then print solution
+
+
+ELSE
+
+    a. Add one of the next moves to the solution vector and recursively
+        check if this move leads to a solution.
+
+    b. If the move chosen in the above step doesn't lead to a solution 
+        then remove this move from the solution vector and try other alternative moves
+
+    c. If none of the alternatives work, then return false. 
+        ( Returning false will remove the previously added item in the recursion and if 
+         false is returned by the initial call of recursion then "no solution exists")
+
+
+
+
+main(){
+
+    if (solve(board) ) {
+        print(solution);
+    } else {
+        print( " No solution exists");
+    }
+
+}
+
+
+boolean solve(board) {
+    If (all the squares are visisted)
+        return true;
+
+    for ( int move = 0; move < possibleMoves; move++) {
+
+        if ( isSafe( thisMove) ) {
+            Add this 'Move' to solution vector;
+            board[move] = 1;
+
+            Check if this move leads to a solution.
+            if( solve(board)) {
+                return true; // This move actually leads to a solution.
+            } else {
+                // Back track, this move does not lead to a solution.
+                board[move] = 0;
+                // Remove this move from solution and try other alternatives.
+            }
+
+        }
+    }
+
+    // If all alternatives are checked and none of them lead to a solution, 
+    // then return false. This will make sure that parent will try other options.
+    return false;
+}
+
