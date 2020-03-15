@@ -17,9 +17,24 @@ public class StackWithOperationsOnMiddle {
 			System.out.println(" pop = " + stack.pop());
 			System.out.println(" middle = " + stack.findMiddle());
 			System.out.println();
-
 		}
 		
+		for ( int i=1; i <=5; i++) {
+			stack.push(i);
+			System.out.println(" middle = " + stack.findMiddle());
+			System.out.println();
+		}
+		System.out.println();
+		
+		
+		for ( int i=1; i <=5; i++) {
+			System.out.println(" middle = " + stack.findMiddle());
+			int del = stack.deleteMiddle();
+			System.out.println(" Deleted elem = " + del);
+			System.out.println(" middle after deletion = " + stack.findMiddle());
+
+			System.out.println(" ");
+		}
 	}
 	
 	void push(int item) {
@@ -37,15 +52,6 @@ public class StackWithOperationsOnMiddle {
 			if ( count %2 != 0)
 				middle = middle.prev;
 		}
-	}
-	
-	int findMiddle() {
-		if ( head == null) {
-			System.out.println(" stack is empty, cannot find middle");
-			return -1;
-		}
-		
-		return middle.data;
 	}
 	
 	int pop() {
@@ -68,6 +74,52 @@ public class StackWithOperationsOnMiddle {
 		}	
 		return item;
 	}
+	
+	int findMiddle() {
+		if ( head == null) {
+			System.out.println(" stack is empty, cannot find middle");
+			return -1;
+		}
+		
+		return middle.data;
+	}
+	
+	int deleteMiddle() {
+		if ( head == null) {
+			System.out.println(" stack is empty, cannot find middle");
+			return -1;
+		}
+		
+		int ret = middle.data;
+		
+		// Delete the middle node;
+		
+		// Case 1: Single Node
+		if ( count == 1) { // head.next == null
+			head = null;
+			middle = null;
+		} else if ( count == 2) { // middle.next == null
+			head.next = null;
+			middle.prev = null;
+			middle = head;
+		} else {
+			
+			middle = middle.next;
+			middle.prev  = middle.prev.prev;
+			middle.prev.next = middle;
+			
+			if ( count %2 == 0) { // even no of nodes
+				middle = middle.prev;
+			} 
+		}
+				
+		count--;
+		return ret;
+	}
+	
+	
+	
+	
 	
 	Node middle;
 	Node head;
