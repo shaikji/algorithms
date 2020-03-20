@@ -31,18 +31,15 @@ public class InfixToPostfix {
 				while ( !stack.isEmpty() && stack.peek() != '(') {
 					sbr.append(stack.pop());
 				}
-				
-				if ( !stack.isEmpty() && stack.peek() != '(') {
+				if ( stack.isEmpty() || stack.peek() != '(' ) // right exists but not the left
 					return "Invalid Expression";
-				} else {
-					stack.pop(); // pop the parenthesis
-				}
+				stack.pop();
 			} else {
 				
 				// It is an operator
 				
 				while ( !stack.isEmpty() && precedence(ch) <= precedence(stack.peek())) {
-					if ( ch == '(')
+					if ( ch == '(') // Left exists but not the right
 						return "Invalid Expression";
 					sbr.append(stack.pop());
 				}
