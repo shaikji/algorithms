@@ -16,42 +16,57 @@ public class NextGreaterElement {
 			System.out.print(arr[i] + " ");
 		System.out.println();
 	}
-
-	static void printNGE(int[] arr) {
-
-		if (arr == null || arr.length == 0)
-			return;
-
+	
+	
+	static void printNGE( int[] arr) {
+		
+		int next = -1;
 		Stack<Integer> stack = new Stack();
 		stack.push(arr[0]);
-		int element;
-		int next;
-
-		for (int i = 1; i < arr.length; i++) {
-
+		
+		for ( int i=1; i < arr.length; i++) {
+			
 			next = arr[i];
-
-			element = stack.pop();
-
-			while (element < next) {
-				System.out.println(element + " -------> " + next);
-				if (stack.isEmpty())
-					break;
-				element = stack.pop();
+			
+			while ( !stack.isEmpty() && stack.peek() <= next) {
+				System.out.println(stack.pop() + " -----> " + next);
 			}
-
-			if (element > next)
-				stack.push(element);
-
+			
 			stack.push(next);
 		}
-
-		while (!stack.isEmpty()) {
-			element = stack.pop();
-			next = -1;
-			System.out.println(element + " -------> " + next);
+		
+		next = -1;
+		
+		while ( !stack.isEmpty()) {
+			System.out.println(stack.pop() + " -----> " + next);
 		}
-
+		
 	}
 
+	/*
+	 * static void printNGE(int[] arr) {
+	 * 
+	 * if (arr == null || arr.length == 0) return;
+	 * 
+	 * Stack<Integer> stack = new Stack(); stack.push(arr[0]); int element; int
+	 * next;
+	 * 
+	 * for (int i = 1; i < arr.length; i++) {
+	 * 
+	 * next = arr[i];
+	 * 
+	 * element = stack.pop();
+	 * 
+	 * while (element < next) { System.out.println(element + " -------> " + next);
+	 * if (stack.isEmpty()) break; element = stack.pop(); }
+	 * 
+	 * if (element > next) stack.push(element);
+	 * 
+	 * stack.push(next); }
+	 * 
+	 * while (!stack.isEmpty()) { element = stack.pop(); next = -1;
+	 * System.out.println(element + " -------> " + next); }
+	 * 
+	 * }
+	 */
 }
