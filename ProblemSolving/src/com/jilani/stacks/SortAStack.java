@@ -2,17 +2,13 @@ package com.jilani.stacks;
 
 import java.util.Stack;
 
-public class ReverseAStack {
+public class SortAStack {
 
 	public static void main(String[] args) {
 
 		Stack<Integer> stack = new Stack();
 
-		/*
-		 * for (int i = 1; i <= 5; i++) { stack.push(i); }
-		 */
-
-		for (int i = 5; i > 0; i--) {
+		for (int i = 1; i <= 5; i++) {
 			stack.push(i);
 		}
 
@@ -43,10 +39,9 @@ public class ReverseAStack {
 		
 		if ( stack.isEmpty())
 			stack.push(elem);
-		else if ( elem < stack.peek())
+		else
 		{
-			stack.push(elem);
-		} else {
+			
 			int item = stack.pop();
 			insert_at_bottom(stack, elem);
 			stack.push(item);
