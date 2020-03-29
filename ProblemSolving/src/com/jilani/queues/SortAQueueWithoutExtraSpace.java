@@ -18,32 +18,35 @@ public class SortAQueueWithoutExtraSpace {
 	}
 
 	static void sortQueue(Queue<Integer> queue) {
-
 		if (queue.isEmpty())
 			return;
-
-		// 1. Find the minIndex from queue
 		int n = queue.size();
-		int min_index = -1;
-		int min_element = Integer.MAX_VALUE;
-		int current;
-		int k = 0;
-		while (k < n) {
-			min_element = Integer.MAX_VALUE;
-			for (int i = 0; i < n ; i++) {
-				current = queue.poll();
-				if (current < min_element && i < n-k) {
-					min_index = i;
-					min_element = current;
-				}
-				queue.add(current);
-			}
-			moveToEnd(queue, min_index);
-			k++;
+
+		for (int i = 0; i < n; i++) {
+			int min_index = minIndex(queue, n - i);
+			insertMinToRear(queue, min_index);
 		}
 	}
 
-	static void moveToEnd(Queue<Integer> queue, int idx) {
+	static int minIndex(Queue<Integer> queue, int uptoIndex) {
+
+		int min_index = -1;
+		int min_element = Integer.MAX_VALUE;
+		int current;
+		int n = queue.size();
+		
+		for (int i = 0; i < n; i++) {
+			current = queue.poll();
+			if (current < min_element && i < uptoIndex) {
+				min_index = i;
+				min_element = current;
+			}
+			queue.add(current);
+		}
+		return min_index;
+	}
+
+	static void insertMinToRear(Queue<Integer> queue, int idx) {
 		int n = queue.size();
 		int minElem = Integer.MAX_VALUE;
 		for (int i = 0; i < n; i++) {
