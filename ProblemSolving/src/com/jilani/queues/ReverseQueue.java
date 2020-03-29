@@ -11,7 +11,7 @@ public class ReverseQueue {
 		Queue<Integer> queue = new LinkedList();
 		for ( int i=1; i <= 7; i++)
 			queue.add(i);
-		reverse(queue);
+		reverseRec(queue);
 		printQueue(queue);
 	}
 	
@@ -25,6 +25,15 @@ public class ReverseQueue {
 		
 		while ( !stack.isEmpty()) {
 			queue.add(stack.pop());
+		}
+	}
+	
+	static void reverseRec(Queue<Integer> queue) {
+		
+		if ( queue.size() > 0 ) {
+			int x = queue.poll();
+			reverse(queue);
+			queue.add(x);
 		}
 	}
 	
