@@ -59,11 +59,9 @@ public class KQueuesInAnArray {
 
 		int frontIndex = front[qnum];
 		front[qnum] = next[frontIndex];
-		next[frontIndex] = free;
 		free = frontIndex;
 
 		int ret = arr[frontIndex];
-		arr[frontIndex]=0;
 		return ret;
 	}
 
