@@ -24,7 +24,27 @@ public class CreateBSTFromPreOrder {
 			return;
 
 		Index index = new Index(0);
-		root = createBSTUtil(pre, 0, pre.length - 1, index);
+		//root = createBSTUtil(pre, 0, pre.length - 1, index);
+		root = createBSTUtilMinMax(pre,index, pre[0], Integer.MIN_VALUE, Integer.MAX_VALUE);
+	}
+	
+	static Node createBSTUtilMinMax(int[] pre, Index index, int key, int min, int max) {
+		
+		if ( index.index >= pre.length)
+			return null;
+		
+		if ( key > min && key < max) {
+			
+			Node node = new Node(key);
+			index.index = index.index +1;
+			if ( index.index < pre.length) {
+				node.left = createBSTUtilMinMax(pre, index, pre[index.index], min, key);
+				node.right = createBSTUtilMinMax(pre, index, pre[index.index], key, max);
+			}
+			return node;
+		}
+		
+		return null;
 	}
 
 	static Node createBSTUtil(int[] pre, int start, int end, Index I) {
