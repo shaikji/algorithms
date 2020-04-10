@@ -17,7 +17,8 @@ public class FindNthNodeInInorder {
 		int i = 7;
 
 		findNthNodeInInorder(root, i);
-		//System.out.println( i + "th Node in Inorder = " + ((nthNode == null) ? -1 : nthNode.data));
+		// System.out.println( i + "th Node in Inorder = " + ((nthNode == null) ? -1 :
+		// nthNode.data));
 
 		/*
 		 * for (int i = 2; i < 9; i++) { inSucc = findInorderSuccessor(root, i);
@@ -35,14 +36,15 @@ public class FindNthNodeInInorder {
 		if (node == null)
 			return;
 
-		
-		findNthNodeInInorder(node.left, k);
-		count++;
-		if ( k == count) {
-			System.out.println(k+"th node in inorder = " + node.data);
+		if (count <= k) {
+			findNthNodeInInorder(node.left, k);
+			count++;
+			if (k == count)
+				System.out.println(k + "th node in inorder = " + node.data);
+			
+			findNthNodeInInorder(node.right, k);
 		}
-		
-		findNthNodeInInorder(node.right, k);
+
 	}
 
 	static void inorder(Node root) {
@@ -52,8 +54,6 @@ public class FindNthNodeInInorder {
 			inorder(root.right);
 		}
 	}
-
-
 
 	static Node root;
 
