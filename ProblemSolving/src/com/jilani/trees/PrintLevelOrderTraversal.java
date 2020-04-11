@@ -15,12 +15,13 @@ public class PrintLevelOrderTraversal {
 		root.right.left = new Node(6);
 		root.right.right = new Node(7);
 
-		levelOrder(root);
-		levelOrd(root);
+		levelOrderRecursive(root);
+		levelOrderTraversalUsingOneQueue(root);
+		levelOrderTraversalUsingTwoQueues(root);
 	}
 	
 	public static Node root;
-	public static void levelOrder(Node root) {
+	public static void levelOrderRecursive(Node root) {
 		
 		int height = height(root);
 		
@@ -50,7 +51,7 @@ public class PrintLevelOrderTraversal {
 		return 1 + Math.max(lh, rh);
 	}
 	
-	public  static void levelOrd(Node root) {
+	public  static void levelOrderTraversalUsingOneQueue(Node root) {
 		
 		if ( root == null)
 			return;
@@ -77,6 +78,37 @@ public class PrintLevelOrderTraversal {
 			}			
 			
 		}
+	}
+	
+	public  static void levelOrderTraversalUsingTwoQueues(Node root) {
+		
+		if ( root == null)
+			return;
+		
+		Queue<Node> currQ = new LinkedList();
+		Queue<Node> nextQ = new LinkedList();
+
+		currQ.offer(root);
+		
+		Node n;
+		
+		while (!currQ.isEmpty()) {
+			n = currQ.poll();
+			System.out.print(n.data + " ");
+			
+			if ( n.left != null)
+				nextQ.add(n.left);
+			if ( n.right != null)
+				nextQ.add(n.right);
+			
+			if ( currQ.isEmpty()) {
+				System.out.println();
+				Queue<Node> temp = currQ;
+				currQ= nextQ;
+				nextQ = temp;
+			}
+		}
+		
 	}
 	
 	static class Node{
