@@ -1,5 +1,6 @@
 package com.jilani.trees;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -43,7 +44,51 @@ public class PrintLevelOrderOfPerfectBinaryTree {
 		root.right.right.right.right = new Node(31);
 
 		printLevelOrder(root);
-
+		System.out.println();
+		printLevelOrderUsingArray(root);
+	}
+	
+	static void printLevelOrderUsingArray(Node root) {
+		
+		if ( root == null)
+			return;
+		
+		Queue<Node> queue = new LinkedList<Node>();
+		
+		queue.add(root);
+		queue.add(null);
+		Node node = null;
+		System.out.print(root.data+ " ");
+		
+		ArrayList<Integer> list = new ArrayList();
+		while ( !queue.isEmpty()) {
+			
+			node = queue.poll();
+			
+			if ( null == node) {
+				if ( !queue.isEmpty())
+					queue.add(null);
+				printList(list, list.size());
+				list.clear();
+				System.out.println();
+			} else {
+				
+				list.add(node.data);
+				
+				if ( node.left != null)
+					queue.add(node.left);
+				if ( node.right != null)
+					queue.add(node.right);
+			}
+		}
+	}
+	
+	static void printList(ArrayList<Integer> list, int size) {
+		
+		
+		for ( int i=0; i < size/2; i++) {
+			System.out.print(list.get(i) + " " + list.get(size-i-1)+ " ");
+		}
 	}
 
 	static void printLevelOrder(Node node) {
