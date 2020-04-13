@@ -1,6 +1,5 @@
 package com.jilani.queues;
 
-import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
 import java.util.Queue;
@@ -20,7 +19,8 @@ public class ReversePath {
 		// levelorder(root);
 		inorder(root);
 		System.out.println();
-		reverse(root, 10, new HashMap<Integer, Integer>(), 0, new INT());
+		//reverse(root, 10, new HashMap<Integer, Integer>(), 0, new INT());
+		reverseUsingQueue(root, 10, new LinkedList<Integer>());
 		System.out.println();
 		inorder(root);
 		System.out.println();
@@ -59,10 +59,11 @@ public class ReversePath {
 		return left != null? left : right; 
 	}
 
-	static boolean reverseV1(Node root, int elem, Queue<Integer> queue) {
+	static boolean reverseUsingQueue(Node root, int elem, LinkedList<Integer> queue) {
 
 		if (root == null)
 			return false;
+		
 		queue.add(root.data);
 
 		if (root.data == elem) {
@@ -70,20 +71,20 @@ public class ReversePath {
 			return true;
 		}
 
-		boolean left = reverseV1(root.left, elem, queue);
+		boolean left = reverseUsingQueue(root.left, elem, queue);
 
 		if (left) {
 			root.data = queue.poll();
 			return left;
 		}
 
-		boolean right = reverseV1(root.right, elem, queue);
+		boolean right = reverseUsingQueue(root.right, elem, queue);
 
 		if (right) {
 			root.data = queue.poll();
 			return right;
 		}
-		queue.poll();
+		queue.removeLast();
 		return false;
 
 	}
