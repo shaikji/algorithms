@@ -2,9 +2,9 @@ package com.jilani.trees;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.Map;
-
-import com.jilani.trees.PrintLevelOrderOfPerfectBinaryTree.Node;
+import java.util.Queue;
 
 public class PrintAllDiagonalsOfABinaryTree {
 
@@ -45,6 +45,10 @@ public class PrintAllDiagonalsOfABinaryTree {
 		root.right.right.right.right = new Node(31);
 
 		printDiagonals(root);
+		
+		System.out.println();
+		diagonalsIterative(root);
+		System.out.println();
 	}
 	
 	static void printDiagonals(Node node) {
@@ -73,6 +77,40 @@ public class PrintAllDiagonalsOfABinaryTree {
 			diagonals(node.left, map, d+1);
 			diagonals(node.right, map, d);
 			
+		}
+	}
+	
+	static void diagonalsIterative (Node root) {
+		
+		int d =0;
+		
+		Queue<Node> queue = new LinkedList<Node>();
+		queue.add(root);
+		queue.add(null);
+		
+		System.out.print(" d = " + d +" keys = ");
+		Node node = null;
+		
+		while ( !queue.isEmpty() ) {
+			node = queue.poll();
+			
+			if ( null == node) {
+				
+				if ( queue.size() > 0 )
+					queue.add(null);
+				d++;
+				System.out.println();
+				System.out.print(" d = " + d +" keys = ");
+
+			} else {
+				
+				while ( node != null) {
+					System.out.print(node.data + " ");
+					if ( node.left != null)
+						queue.add(node.left);
+					node = node.right;
+				}
+			}
 		}
 	}
 	
