@@ -14,27 +14,32 @@ public class TreeTraversals {
 		root.right.left = new Node(6);
 		root.right.right = new Node(7);
 
+// INorder
 		System.out.println();
 		inorder(root);
 		System.out.println();
 		inorderIterative(root);
 		System.out.println();
-
+		morrisInorder(root);
+		System.out.println();
+		
+// Pre
 		System.out.println();
 		preorder(root);
 		System.out.println();
 		preorderIterative(root);
 		System.out.println();
-
+		morrisPreorder(root);
+		System.out.println();
+		
+// Post
 		System.out.println();
 		postorder(root);
 		System.out.println();
 		postorderIterative(root);
-		System.out.println();
-
-		System.out.println();
 		postorderIterativeUsingOneStack(root);
 		System.out.println();
+		
 	}
 
 	static void inorder(Node node) {
@@ -156,6 +161,70 @@ public class TreeTraversals {
 
 		}
 	}
+	
+	static void morrisInorder(Node root) {
+		
+		Node node = root;
+		
+		while ( node != null) {
+			
+			if ( node.left == null) {
+				System.out.print(" " + node.data);
+				node = node.right;
+			} else {
+				Node predecessor = node.left;
+				
+				while (predecessor.right != null) {
+					
+					if (predecessor.right.data == node.data)
+						break;
+					predecessor = predecessor.right;
+				}
+				
+				if (predecessor.right == null) {
+					predecessor.right = node;
+					node = node.left;
+				} else {
+					predecessor.right = null;
+					System.out.print(" " + node.data);
+					node = node.right;
+				}
+			}
+		}
+	}
+	
+	static void morrisPreorder(Node root) {
+		
+		Node node = root;
+		
+		while ( node != null) {
+			
+			if ( node.left == null) {
+				System.out.print(" " + node.data);
+				node = node.right;
+			} else {
+				Node predecessor = node.left;
+				
+				while (predecessor.right != null) {
+					
+					if (predecessor.right.data == node.data)
+						break;
+					predecessor = predecessor.right;
+				}
+				
+				if (predecessor.right == null) {
+					System.out.print(" " + node.data);
+					predecessor.right = node;
+					node = node.left;
+				} else {
+					predecessor.right = null;
+					node = node.right;
+				}
+			}
+		}
+	}
+	
+
 
 	static Node root;
 
