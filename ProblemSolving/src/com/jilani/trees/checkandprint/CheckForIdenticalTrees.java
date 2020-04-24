@@ -1,5 +1,7 @@
 package com.jilani.trees.checkandprint;
 
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Stack;
 
 public class CheckForIdenticalTrees {
@@ -19,6 +21,9 @@ public class CheckForIdenticalTrees {
 		System.out.println(" Is identical? " + isIdentical(root1, root2));
 		
 		System.out.println(" Is Identical? " + isIdenticalIterative(root1, root2));
+		
+		System.out.println(" Is Identical? " + isIdenticalLevel(root1, root2));
+
 	}
 
 	static boolean isIdentical(Node root1, Node root2) {
@@ -74,6 +79,47 @@ public class CheckForIdenticalTrees {
 		}
 		
 		return true;
+	}
+	
+	static boolean isIdenticalLevel(Node root1, Node root2) {
+		
+		if ( root1 == null && root2 == null)
+			return true;
+		
+		Queue<Node> q1 = new LinkedList<Node>();
+		Queue<Node> q2 = new LinkedList<Node>();
+		Node t1 = null;
+		Node t2 = null;
+		
+		q1.add(root1);
+		q2.add(root2);
+		
+		while ( q1.size() > 0  && q2.size() > 0 )  {
+			
+			t1 = q1.poll();
+			t2 = q2.poll();
+			
+			if (t1.data != t2.data)
+				return false;
+			
+			if ( (t1.left == null && t2.left != null) ||
+					(t1.right == null && t2.right != null) )
+				return false;
+			
+			if ( t1.left != null)
+				q1.add(t1.left);
+			
+			if ( t1.right != null)
+				q1.add(t1.right);
+			
+			if ( t2.left != null)
+				q2.add(t2.left);
+			
+			if ( t2.right != null)
+				q2.add(t2.right);
+		}
+		
+		return q1.isEmpty() && q2.isEmpty();
 	}
 
 	static Node root1;
