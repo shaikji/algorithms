@@ -1,7 +1,5 @@
 package com.jilani.trees.checkandprint;
 
-import java.util.ArrayList;
-
 public class PrintCousinsOfANodeInABinaryTree {
 
 	public static void main(String[] args) {
@@ -41,44 +39,61 @@ public class PrintCousinsOfANodeInABinaryTree {
 		root.right.right.right.left = new Node(30);
 		root.right.right.right.right = new Node(31);
 		
-		printPaths(root);
+		Node node = root.left.left.left.left;
+		
+		printCousins(root, node);
+
 	}
 	
-	static void printPaths( Node root) {
+	static void printCousins( Node root, Node node ) {
+		
+		// 1. Find the level of the given node
+		
+		int level = findLevel(root, node,0);
+		
+		// 2. Print Nodes at the given level
+		// 2.a  Make sure they are not siblings
+		
+		printNodesAtLevel(root, node, level);
+	}
 	
+	static void printNodesAtLevel ( Node root, Node node, int level) {
+		
 		if ( root == null)
 			return;
 		
-		ArrayList<Integer> path= new ArrayList();
-		
-		printPathsUtil(root, path);
-	}
-	
-	static void printPathsUtil(Node root, ArrayList<Integer> path) {
-		
-		
-		
-		if( root == null) {
-			return;
-		}
-		
-		path.add(root.data);
-		printPathsUtil(root.left, path);
-		
-		if ( root.left == null && root.right == null) {
-			print(path);
-			path.remove(path.size()-1);
-			return;
-		}
-		
-		printPathsUtil(root.right, path);
-		path.remove(path.size() - 1);
-	}
-	
-	static void print(ArrayList<Integer> path) {
-		System.out.println(path);
-	}
+		if ( level == 1 ) {
+			if (root.left == node || root.right == node)
+				return;
+			System.out.println(root.left.data);
+			System.out.println(root.right.data);
+		} else if ( level > 1 ) {
 			
+			printNodesAtLevel(root.left, node, level-1);
+			printNodesAtLevel(root.right, node, level-1);
+		}
+	}
+	
+	static int findLevel(Node root, Node node, int level) {
+		
+		if ( root == null)
+			return 0;
+		
+		if ( root== node ) {
+			return level;
+		}
+		
+		int left = findLevel(root.left, node, level+1);
+		if ( left != 0)
+			return left;
+		
+		int right = findLevel(root.right, node, level+1);
+		if ( right != 0)
+			return right;
+		
+		return 0;
+	}
+	
 	static Node root;
 
 	static class Node {
@@ -91,6 +106,5 @@ public class PrintCousinsOfANodeInABinaryTree {
 		}
 	}
 
-	
 
 }
