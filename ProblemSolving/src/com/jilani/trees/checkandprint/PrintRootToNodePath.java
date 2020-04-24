@@ -40,6 +40,8 @@ public class PrintRootToNodePath {
 		root.right.right.right.right = new Node(31);
 		
 		printPath(root, root.right.right.left.left);
+		System.out.println();
+		printPath2(root,  root.right.right.left.left);
 	}
 	
 	static void printPath( Node root, Node node) {
@@ -50,6 +52,16 @@ public class PrintRootToNodePath {
 		int path[] = new int[100];
 		
 		printPathsUtil(root, path, 0, node);
+	}
+	
+	static void printPath2( Node root, Node node) {
+		
+		if ( root == null)
+			return;
+		
+		int path[] = new int[100];
+		
+		printPathsUtilV2(root, path, 0, node);
 	}
 	
 	static void printPathsUtil(Node root, int[] path, int pathlen, Node node) {
@@ -68,7 +80,26 @@ public class PrintRootToNodePath {
 		}		
 		printPathsUtil(root.right, path, pathlen, node);
 	}
+
 	
+	/* pre order */
+	
+	static boolean printPathsUtilV2(Node root, int[] path, int pathlen, Node node) {
+		
+		if( root == null) {
+			return false;
+		}
+		
+		path[pathlen++] = root.data;
+		
+		if ( root == node) {
+			print(path, pathlen);
+			return true;
+		}		
+
+		return printPathsUtilV2(root.left, path, pathlen, node) || printPathsUtilV2(root.right, path, pathlen, node);
+	}
+
 	static void print(int[] path, int pathlen) {
 		for ( int i=0; i < pathlen; i++)
 			System.out.print(" "+ path[i]);
