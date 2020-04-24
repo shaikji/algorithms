@@ -3,7 +3,7 @@ package com.jilani.trees.checkandprint;
 import java.util.LinkedList;
 import java.util.Queue;
 
-public class CheckForMirrorSubtrees {
+public class CheckForSymmetric {
 
 	public static void main(String[] args) {
 
