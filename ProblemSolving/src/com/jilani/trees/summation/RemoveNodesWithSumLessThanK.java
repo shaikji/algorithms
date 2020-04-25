@@ -35,9 +35,8 @@ public class RemoveNodesWithSumLessThanK {
 		
 		if ( root == null)
 			return;
-		int currSum = 0;
 		
-		root = remove(root, K, 0);
+		root = removeV2(root, K);
 		printLevelOrder(root);
 		
 	}
@@ -87,6 +86,23 @@ public class RemoveNodesWithSumLessThanK {
 		
 		if ( node.left == null && node.right == null) {
 			return null;
+		}
+		
+		return node;
+	}
+	
+	static Node removeV2 (Node node, int sum) {
+		
+		if (node == null)
+			return null;
+		
+		node.left = removeV2(node.left, sum-node.data);
+		node.right = removeV2(node.right, sum-node.data);
+		
+		if ( node.left == null && node.right == null) {
+			if (sum > node.data) {
+				return null;
+			}
 		}
 		
 		return node;
