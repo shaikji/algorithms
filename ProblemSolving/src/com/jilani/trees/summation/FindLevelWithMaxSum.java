@@ -3,7 +3,7 @@ package com.jilani.trees.summation;
 import java.util.LinkedList;
 import java.util.Queue;
 
-public class FindLeveWithMaxSum {
+public class FindLevelWithMaxSum {
 
 	public static void main(String[] args) {
 		root = new Node(1);
