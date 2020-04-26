@@ -16,16 +16,15 @@ public class CheckSubTreeSum {
 		
 		int sum = 17;
 		
-		boolean exists = sumExists(root, sum, new Result());
-		System.out.println(" Sum = " + sum + " exists = " + exists);
-		System.out.println();
+		Result res = new Result();
 		
-		sum = 11;
-		exists = sumExists(root, sum, new Result());
-		System.out.println(" Sum = " + sum + " exists = " + exists);
+		boolean exists = sumExists(root, sum, res);
+		System.out.println(" Sum = " + sum + " exists = " + exists+" count = " + count);
+		System.out.println();
 		
 	}
 	
+	static int count =0;
 	
 	static boolean sumExists( Node root, int K, Result res) {
 		
@@ -34,20 +33,26 @@ public class CheckSubTreeSum {
 			return false;
 		}
 		Result ls = new Result();
-		boolean left  = sumExists(root.left, K, ls);
-		
-		if (left)
-			return left;
+		boolean left = sumExists(root.left, K, ls);
 		
 		Result rs = new Result();
 		boolean right = sumExists(root.right, K,  rs);
-		if (right)
-			return right;
 		
 		int sum = root.data + ls.sum + rs.sum;
-		res.sum = sum;
 		
-		return sum == K;
+		boolean result = (sum == K);
+		
+		res.sum = sum;
+		if (result)
+			count++;
+				
+		return result || left || right;
+	}
+	
+	static class Result{
+		int sum;
+		int count;
+		
 	}
 
 	static Node root;
