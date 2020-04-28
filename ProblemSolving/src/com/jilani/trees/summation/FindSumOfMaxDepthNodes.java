@@ -15,6 +15,26 @@ public class FindSumOfMaxDepthNodes {
 		
 		
 		System.out.println(" Sum = " + maxDepthNodesSum(root));
+		mxdepth(root,0);
+		System.out.println(" sum = " + sum );
+	}
+	static int max_level = Integer.MIN_VALUE;
+	static int sum = 0;
+	static void mxdepth(Node root, int level) {
+		
+		if (root == null)
+			return;
+		
+		if ( level > max_level) {
+			sum = root.data;
+			max_level = level;
+		} else if ( level == max_level) {
+			sum += root.data;
+		}
+		
+		mxdepth(root.left, level+1);
+		mxdepth(root.right, level + 1);
+		
 	}
 	
 	static int maxDepthNodesSum(Node root) {
