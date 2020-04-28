@@ -1,6 +1,6 @@
 package com.jilani.trees.summation;
 
-public class FindSumOfAllLeftLeaves {
+public class FindSumOfAllLeaves {
 
 	public static void main(String[] args) {
 
@@ -22,7 +22,6 @@ public class FindSumOfAllLeftLeaves {
 		root.right.right.left = new Node(14);
 		root.right.right.right = new Node(15);
 		
-		
 		System.out.println(" Sum = " + sum(root));
 	}
 	
@@ -32,19 +31,13 @@ public class FindSumOfAllLeftLeaves {
 		if ( root == null)
 			return 0;
 		
-		if ( isLeaf(root.left) ) {
-			return root.left.data;
-		}
+		if ( root.left == null && root.right == null)
+			return root.data;
 		
 		return sum(root.left) + sum(root.right);
 	}
 	
-	static boolean isLeaf(Node node) {
-		
-		if ( null != node && node.left == null && node.right == null )
-			return true;
-		return false;
-	}
+	
 
 	static Node root;
 
