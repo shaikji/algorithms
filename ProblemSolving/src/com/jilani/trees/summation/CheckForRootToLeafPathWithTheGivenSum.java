@@ -18,6 +18,7 @@ public class CheckForRootToLeafPathWithTheGivenSum {
 
 		int K = 8;
 		System.out.println("hasSum "+ K + " = " + hasSum(root,  K, 0));
+		System.out.println("hasPathSum "+ K + " = " + hasPathSum(root,  K));
 	}
 	
 	static boolean hasSum ( Node root, int K, int sum ) {
@@ -34,6 +35,14 @@ public class CheckForRootToLeafPathWithTheGivenSum {
 		return hasSum(root.left, K, sum) || hasSum(root.right, K, sum);
 	}
 	
+	
+	static boolean hasPathSum(Node root, int sum) {
+		
+		if ( root == null)
+			return sum == 0;
+		
+		return hasPathSum(root.left, sum-root.data) || hasPathSum(root.right, sum-root.data);
+	}
 	static Node root;
 
 	static class Node {
