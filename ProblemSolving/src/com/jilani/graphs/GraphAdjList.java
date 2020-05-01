@@ -1,6 +1,7 @@
 package com.jilani.graphs;
 
 import java.util.LinkedList;
+import java.util.Queue;
 
 public class GraphAdjList {
 
@@ -9,13 +10,17 @@ public class GraphAdjList {
 		Graph g = new Graph(5);
 		g.addEdge(0, 1);
 		g.addEdge(0, 4);
-		g.addEdge(1, 4);
-		g.addEdge(1, 3);
 		g.addEdge(1, 2);
+		g.addEdge(1, 3);
+		g.addEdge(1, 4);
 		g.addEdge(2, 3);
 		g.addEdge(3, 4);
 		
 		g.dfs();
+		
+		System.out.println(" ------ ");
+		
+		g.bfs();
 		
 	}
 	
@@ -62,6 +67,38 @@ public class GraphAdjList {
 				if ( !visited[v])
 					dfsutil(v,visited);
 			}
+		}
+		
+		void bfs() {
+			boolean[] visited = new boolean[V];
+			for ( int i=0; i < V; i++)
+				if ( !visited[i])
+					bfsutil(i, visited);
+		}
+		
+		void bfsutil(int u, boolean[] visited) {
+			
+			Queue<Integer> q = new LinkedList();
+			
+			q.add(u);
+			visited[u] = true;
+			
+			while (!q.isEmpty()) {
+				
+				u = q.poll();
+				System.out.println(u);
+				int v = 0;
+				
+				LinkedList<Integer> list = adjListArr[u];
+				
+				for (int i=0; i < list.size(); i++) {
+					v = list.get(i);
+					if (!visited[v]) {
+						visited[v]= true;
+						q.add(v);
+					}
+				}
+			}	
 		}
 	}
 
