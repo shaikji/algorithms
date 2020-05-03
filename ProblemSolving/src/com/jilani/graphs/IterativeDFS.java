@@ -41,33 +41,31 @@ public class IterativeDFS {
 
 			adjListArr[u].add(v);
 		}
-		
-		void dfs ( ) {
-			
+
+		void dfs() {
+
 			boolean[] visited = new boolean[V];
-			
-			for ( int i=0; i < V; i++)
-				if ( !visited[i])
+
+			for (int i = 0; i < V; i++)
+				if (!visited[i])
 					dfsiterative(i, visited);
 		}
-		
+
 		void dfsiterative(int u, boolean[] visited) {
-			
+
 			Stack<Integer> stack = new Stack();
 			stack.push(u);
-			
-			while ( !stack.isEmpty()) {
-				
+			visited[u] = true;
+
+			while (!stack.isEmpty()) {
+
 				u = stack.pop();
-				
-				if ( !visited[u]) {
-					visited[u] = true;
-					System.out.println(u);
-				}
-				
-				for ( int v: adjListArr[u]) {
-					
-					if ( !visited[v]) {
+				System.out.println(u);
+
+				for (int v : adjListArr[u]) {
+
+					if (!visited[v]) {
+						visited[v] = true;
 						stack.push(v);
 					}
 				}
