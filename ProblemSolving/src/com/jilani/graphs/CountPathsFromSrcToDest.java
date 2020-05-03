@@ -19,6 +19,7 @@ public class CountPathsFromSrcToDest {
         int dest = 3;
         
         System.out.println(" Number of Paths from " + src +" to " + dest + " = " + g.countpaths(src, dest, 0 ));
+        System.out.println(" Number of Paths from " + src +" to " + dest + " = " + g.countpathsV2(src, dest, 0 ));
 
 	}
 
@@ -56,6 +57,21 @@ public class CountPathsFromSrcToDest {
 				}
 			}
 			return numpaths;
+		}
+		
+		int countpathsV2(int src, int dest, int numpaths) {
+			
+			int result = numpaths;
+			
+			if ( src == dest) {
+				result++;
+			} else {
+				
+				for ( int i: adjListArr[src]) {
+					result += countpaths(i, dest, numpaths);
+				}
+			}
+			return result;
 		}
 	}
 	
