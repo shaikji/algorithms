@@ -2,6 +2,7 @@ package com.jilani.graphs;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.Queue;
 
 // Directed Graph
 
@@ -23,6 +24,12 @@ public class PrintAllPathsFromSourceToDestination {
 	        System.out.println(" Printing all paths from source " + src +"  to destination " + dest);
 	        g.printAllPaths(src, dest);
 	        System.out.println();
+	        
+	        System.out.println(" Printing all paths from source " + src +"  to destination " + dest);
+	        g.printAllPathsUsingBFS(src, dest);
+	        System.out.println();
+
+	        
 	}
 
 	static class Graph {
@@ -47,8 +54,7 @@ public class PrintAllPathsFromSourceToDestination {
 			adjListArr[u].add(v);
 		}
 		
-		// Print path using dfs
-		
+		// Print path using dfs		
 		void printAllPaths(int s, int d) {
 			
 			boolean[] visited = new boolean[V];
@@ -79,6 +85,48 @@ public class PrintAllPathsFromSourceToDestination {
 			
 			visited[u] = false;
 		}
+		
+		
+		// Print path using BFS		
+		void printAllPathsUsingBFS(int s, int d) {
+			
+			ArrayList<Integer> path = new ArrayList();
+			Queue<ArrayList<Integer>> queue = new LinkedList();
+			path.add(s);
+			queue.add(path);
+			
+			while ( !queue.isEmpty()) {
+				
+				ArrayList<Integer> p = queue.poll();
+				
+				int last = p.get(p.size() -1 );
+				if ( last == d ) {
+					// Print Path
+					
+					System.out.println(p);
+					continue;
+				}
+				
+				
+				for ( int v: adjListArr[last]) {
+					
+					if ( !visited(v, p)) {
+						ArrayList<Integer> newPath = new ArrayList();
+						newPath.addAll(p);
+						newPath.add(v);
+						queue.add(newPath);
+					}
+				}
+				
+			}
+		}
+		
+		boolean visited(int v, ArrayList<Integer> path) {
+			return path.contains(v);
+		}
+		
+		
+
 		
 	}
 }
