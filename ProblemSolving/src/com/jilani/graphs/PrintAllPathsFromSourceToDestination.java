@@ -5,7 +5,7 @@ import java.util.LinkedList;
 
 // Directed Graph
 
-public class PrintPathFromSourceToDestination {
+public class PrintAllPathsFromSourceToDestination {
 
 	public static void main(String[] args) {
 
