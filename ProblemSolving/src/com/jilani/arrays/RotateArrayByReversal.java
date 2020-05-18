@@ -23,6 +23,7 @@ public class RotateArrayByReversal {
 		System.out.println("\n\n");
 	}
 	
+	// i - start index, j - end index
 	void reverse( int[] arr, int i, int j) {
 		
 		while ( i < j ) {
@@ -38,21 +39,18 @@ public class RotateArrayByReversal {
 	void rotate( int[] arr, int n, int d) {
 		
 		// to handle the case d >= n
+		
+		if ( arr == null || arr.length == 1 )
+			return;
+		
 		d = d % n;
 		
+		if ( d == 0 )
+			return;
 		
 		reverse( arr, 0, d-1);
 		reverse(arr, d, n-1);
 		reverse(arr, 0, n-1);
-		
-	}
-	
-	int gcd (int a, int b) {
-		
-		if ( b == 0 )
-			return a;
-		
-		return gcd(b, a % b);
 		
 	}
 	
