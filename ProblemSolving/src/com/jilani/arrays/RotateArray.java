@@ -7,7 +7,7 @@ public class RotateArray {
 		
 		int[] arr = {1, 2, 3, 4, 5, 6, 7,8};
 		int n = arr.length;
-		int d = 2;
+		//int d = 2;
 		
 		RotateArray rotate = new RotateArray();
 		
@@ -15,54 +15,28 @@ public class RotateArray {
 		rotate.printArray(arr);
 		System.out.println();
 		n = arr.length;
-		d = 2;
-		System.out.println(" N = " + n + " d = " + d );
-		rotate.rotate(arr, n, d);
+		System.out.println(" N = " + n  );
+		rotate.rotate(arr, n);
 		System.out.println(" After rotation ");
 		rotate.printArray(arr);
 		System.out.println("\n\n");
 	}
 	
-	void rotate( int[] arr, int n, int d) {
+	void rotate( int[] arr, int n) {
 		
-		// to handle the case d >= n
-		d = d % n;
+		if ( arr == null || arr.length <= 1)
+			return;
 		
-		int gcd = gcd(n,d);
+		int x = arr[n-1];
 		
-		for ( int i=0; i < gcd; i++) {
-			
-			int j = i;
-			int k;
-			
-			int temp = arr[i];
-			while ( true ) {
-				
-				k = j + d;
-				
-				if ( k >= n)
-					k = k - n;
-				
-				if ( k == i)
-					break;
-				
-				arr[j] = arr[k];
-				j = k;
-			}
-
-			arr[j] = temp; 
+		for ( int i=n-1; i > 0;i--) {
+			arr[i] = arr[i-1];
 		}
 		
+		arr[0] = x;
 	}
 	
-	int gcd (int a, int b) {
-		
-		if ( b == 0 )
-			return a;
-		
-		return gcd(b, a % b);
-		
-	}
+
 	
 	void printArray(int[] arr) {
 		
