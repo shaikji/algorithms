@@ -2,7 +2,7 @@ package com.jilani.arrays;
 
 import java.util.Arrays;
 
-public class RearrangeEvenAndOddPositions {
+public class RearrangeMinMax {
 
 	public static void main(String[] args) {
 
@@ -27,12 +27,11 @@ public class RearrangeEvenAndOddPositions {
 		int p = 0;
 		int q = n-1;	
 		
-		for ( int i=0; i < n; i++) {
-			
-			if ( (i+1)%2 == 0  )
-				arr[i] = temp[q--];
-			else
-				arr[i] = temp[p++];
+		int i =0;
+		while ( p <= q && i < n ) {
+			arr[i++] = temp[p++];
+			if ( i < n)
+			arr[i++] = temp[q--];
 		}
 		
 	}
