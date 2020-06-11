@@ -27,6 +27,7 @@ public class EditDistance {
 
 	}
 
+	// Using DP
 	static int edit_distance_dp(char[] X, int m, char[] Y, int n) {
 
 		int[][] dp = new int[m + 1][n + 1];
