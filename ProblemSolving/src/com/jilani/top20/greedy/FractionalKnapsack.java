@@ -16,7 +16,7 @@ public class FractionalKnapsack {
 
 	static double knapsack(int[] wt, int[] value, int W) {
 
-		if (wt == null || value == null || wt.length == 1 || value.length == 1 || W < 0)
+		if (wt == null || value == null || wt.length == 0 || value.length == 0 || W < 0)
 			return 0;
 
 		ArrayList<Item> list = new ArrayList<Item>();
@@ -28,15 +28,22 @@ public class FractionalKnapsack {
 		Collections.sort(list);
 		int w = 0;
 		int profit = 0;
-		for (int i = 0; i < wt.length; i++) {
+		
+		// Read it from the list.
+		
+		for (int i = 0; i < list.size(); i++) {
 
-			if (w + wt[i] <= W) {
-				profit += value[i];
-				w = w + wt[i];
+			Item it = list.get(i);
+			int iwt =it.wt;
+			int ival = it.value;
+			
+			if (w + iwt <= W) {
+				profit += ival;
+				w = w + iwt;
 			} else {
-				double fraction = (double)(W - w) / wt[i];
-				profit += fraction * value[i];
-				w =(int)( w + fraction * wt[i]);
+				double fraction = (double)(W - w) / iwt;
+				profit += fraction * ival;
+				w =(int)( w + fraction * iwt);
 				break;
 			}
 		}
