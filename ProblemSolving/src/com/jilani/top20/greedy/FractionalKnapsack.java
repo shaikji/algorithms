@@ -51,6 +51,7 @@ public class FractionalKnapsack {
 		return profit;
 	}
 
+	// Natural Order: value_per_wt in the decreasing order
 	static class Item implements Comparable<Item> {
 
 		int wt;
